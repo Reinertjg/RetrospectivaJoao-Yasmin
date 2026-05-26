@@ -12,17 +12,17 @@ const section5Details = document.querySelectorAll(".section5-detail");
 const section5Counters = document.querySelectorAll(".section5-detail [data-count]");
 const section6Stats = document.querySelectorAll(".section6-stat");
 const section6Final = document.querySelector(".section6-final");
-const section7Details = document.querySelectorAll(".section7-detail");
 const photoFloatLayer = document.querySelector("#photoFloatLayer");
 const photoFloatLayerFinal = document.querySelector("#photoFloatLayerFinal");
 
 let currentScreen = 0;
+let nextCooldown = 3;
+let nextCooldownTimer;
 let section2Step = 0;
 let section3Revealed = false;
 let section4DateRevealed = false;
 let section5StatsRevealed = false;
 let section6Step = 0;
-let section7PhotosRevealed = false;
 let photoQueueTimer;
 let photoQueueIndex = 0;
 let activePhotoLayer = photoFloatLayer;
@@ -151,13 +151,28 @@ function stopFloatingPhotos() {
 
 function updateControls() {
   previousButton.disabled = currentScreen === 0;
-  nextButton.disabled = currentScreen === screens.length - 1;
-  nextButton.textContent = "Próxima";
+  nextButton.disabled = currentScreen === screens.length - 1 || nextCooldown > 0;
+  nextButton.textContent = nextCooldown > 0 ? `Próxima ${nextCooldown}s` : "Próxima";
   counter.textContent = `${currentScreen + 1} / ${screens.length}`;
 }
 
 function startNextCooldown() {
+  clearInterval(nextCooldownTimer);
+  nextCooldown = currentScreen === screens.length - 1 ? 0 : 3;
   updateControls();
+
+  if (nextCooldown === 0) {
+    return;
+  }
+
+  nextCooldownTimer = setInterval(() => {
+    nextCooldown -= 1;
+    updateControls();
+
+    if (nextCooldown <= 0) {
+      clearInterval(nextCooldownTimer);
+    }
+  }, 1000);
 }
 
 function loadCurrentSong() {
@@ -176,6 +191,7 @@ async function playCurrentSong() {
   loadCurrentSong();
 
   try {
+    musicPlayer.volume = 1;
     await musicPlayer.play();
   } catch {
     // Mobile browsers may wait for the first tap before allowing audio.
@@ -214,6 +230,8 @@ function revealSection3Details() {
     detail.offsetHeight;
     detail.classList.add("revealed-detail");
   });
+
+  startNextCooldown();
 }
 
 function revealSection4Date() {
@@ -225,6 +243,8 @@ function revealSection4Date() {
     detail.offsetHeight;
     detail.classList.add("revealed-detail");
   });
+
+  startNextCooldown();
 }
 
 function formatNumber(value) {
@@ -265,6 +285,8 @@ function revealSection5Stats() {
     counter.textContent = "0";
     animateCounter(counter);
   });
+
+  startNextCooldown();
 }
 
 function revealNextSection6Stat() {
@@ -274,6 +296,7 @@ function revealNextSection6Stat() {
     section6Final.offsetHeight;
     section6Final.classList.add("revealed-detail");
     section6Step += 1;
+    startNextCooldown();
     return;
   }
 
@@ -287,18 +310,7 @@ function revealNextSection6Stat() {
   counter.textContent = "0";
   animateCounter(counter);
   section6Step += 1;
-}
-
-function revealSection7Photos() {
-  section7PhotosRevealed = true;
-  startFloatingPhotos();
-
-  section7Details.forEach((detail) => {
-    detail.classList.remove("hidden-detail");
-    detail.classList.remove("revealed-detail");
-    detail.offsetHeight;
-    detail.classList.add("revealed-detail");
-  });
+  startNextCooldown();
 }
 
 function resetSectionState(screenIndex) {
@@ -354,13 +366,8 @@ function resetSectionState(screenIndex) {
   }
 
   if (screenIndex === 6) {
-    section7PhotosRevealed = false;
     stopFloatingPhotos();
-
-    section7Details.forEach((detail) => {
-      detail.classList.add("hidden-detail");
-      detail.classList.remove("revealed-detail");
-    });
+    startFloatingPhotos(photoFloatLayer);
   }
 
   if (screenIndex === 9) {
@@ -370,6 +377,10 @@ function resetSectionState(screenIndex) {
 
 function showScreen(nextScreen) {
   if (nextScreen < 0 || nextScreen >= screens.length || nextScreen === currentScreen) {
+    return;
+  }
+
+  if (nextScreen > currentScreen && nextCooldown > 0) {
     return;
   }
 
@@ -395,11 +406,6 @@ function showScreen(nextScreen) {
 
   if (currentScreen === 5 && nextScreen === 6 && section6Step < section6Stats.length + 1) {
     revealNextSection6Stat();
-    return;
-  }
-
-  if (currentScreen === 6 && nextScreen === 7 && !section7PhotosRevealed) {
-    revealSection7Photos();
     return;
   }
 
@@ -452,6 +458,28 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("pointerdown", () => {
   playCurrentSong();
 }, { once: true });
+
+document.addEventListener("touchstart", () => {
+  playCurrentSong();
+}, { once: true });
+
+document.addEventListener("click", () => {
+  playCurrentSong();
+}, { once: true });
+
+window.addEventListener("load", () => {
+  playCurrentSong();
+});
+
+window.addEventListener("pageshow", () => {
+  playCurrentSong();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    playCurrentSong();
+  }
+});
 
 loadCurrentSong();
 playCurrentSong();
