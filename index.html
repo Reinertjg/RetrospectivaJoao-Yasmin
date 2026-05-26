@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#7a1234">
+  <title>Retrospectiva</title>
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
+    <audio id="musicPlayer" src="musicas/alianca.mp3" preload="auto" autoplay loop playsinline></audio>
+
+    <section class="screen active" data-screen="1" data-song="Alianca" data-audio="musicas/alianca.mp3">
+      <h1 class="intro-title">Retrospectiva João & Mamãe</h1>
+      <p class="intro-message">
+        Oi, mamãe, aqui é a Chanel.<br>
+        O João pediu a minha ajuda para te guiar nessa linda retrospectiva.<br>
+        Você topa vir comigo?<br>
+        <br>
+        <br>
+        <strong>Aumente o volume, mamãe</strong>
+      </p>
+      <img class="corner-image" src="chanel/chanel01.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="2" data-song="Last night on earth" data-audio="musicas/last-night-on-earth.mp3">
+      <h1>Voltando no tempo...</h1>
+      <p id="section2Description">Como tudo começou entre você e o papai.</p>
+      <img class="corner-image-left" src="chanel/chanel02.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="3" data-song="Lisboa" data-audio="musicas/lisboa.mp3">
+      <h1>E depois?</h1>
+      <p class="section3-detail hidden-detail">Mamãe curtiu um story do papai na academia no dia...</p>
+      <p class="date-caption middle-caption section3-detail hidden-detail">Papai estava forte</p>
+      <p class="middle-note date-highlight section3-detail hidden-detail">28 de junho de 2024</p>
+      <img class="floating-gif like-insta-gif section3-detail hidden-detail" src="gifs/like_insta.gif" alt="Like do Instagram">
+      <img class="corner-image-left" src="chanel/chanel03-sem-fundo.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="4" data-song="Me amar" data-audio="musicas/me-amar.mp3">
+      <h1>Primeiro encontro!!</h1>
+      <p>Então, papai e mamãe saíram pela primeira vez no dia...</p>
+      <p class="date-caption section4-detail hidden-detail">Papai ficou muito feliz nesse dia.</p>
+      <p class="section4-date hidden-detail">14 de julho de 2024</p>
+      <img class="corner-image-left flipped-image" src="chanel/chanel01.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="5" data-song="Minha felicidade" data-audio="musicas/minha-felicidade.mp3">
+      <h1>E passou tão rápido</h1>
+      <p>Papai e mamãe estão juntos há alguns dias...</p>
+      <div class="stats-list section5-detail hidden-detail" aria-label="Tempo juntos">
+        <p><strong data-count="57974400">0</strong> segundos</p>
+        <p><strong data-count="966240">0</strong> minutos</p>
+        <p><strong data-count="16104">0</strong> horas</p>
+        <p><strong data-count="671">0</strong> dias</p>
+        <p><strong data-count="95">0</strong> semanas</p>
+        <p><strong data-count="22">0</strong> meses</p>
+        <p><strong data-count="1">0</strong> ano</p>
+      </div>
+      <img class="corner-image-left flipped-image" src="chanel/chanel02.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="6" data-song="Linha do tempo" data-audio="musicas/linha-do-tempo.mp3">
+      <h1>Tudo isso?</h1>
+      <p>Fui buscar algumas estatísticas para você ver, mamãe, o quanto você e o papai se amam. Durante todo esse tempo, foram mais de...</p>
+      <div class="stats-list message-stats" aria-label="Estatísticas de amor">
+        <p class="section6-stat hidden-detail"><strong data-count="103334">0</strong> mensagens</p>
+        <p class="section6-stat hidden-detail"><strong data-count="523">0</strong> bons dias</p>
+        <p class="section6-stat hidden-detail"><strong data-count="373">0</strong> boas noites</p>
+        <p class="section6-stat hidden-detail"><strong data-count="1537">0</strong> te amos</p>
+      </div>
+      <p class="section6-final hidden-detail">Não são só números. É uma verdadeira história de amor.</p>
+      <img class="corner-image-right" src="chanel/chanel03-sem-fundo.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="7" data-song="Those eyes" data-audio="musicas/those-eye.mp3">
+      <h1>E as fotos?</h1>
+      <p>Vamos rever alguns momentos, mamãe?</p>
+      <div class="photo-float-layer section7-detail hidden-detail" id="photoFloatLayer" aria-hidden="true"></div>
+    </section>
+
+    <section class="screen" data-screen="8" data-song="TV girl" data-audio="musicas/tv-girl.mp3">
+      <h1>Hummm!!</h1>
+      <p>Acho que tem alguém querendo falar com você, mamãe.</p>
+      <img class="letter-image" src="assets/carta.png" alt="Carta">
+      <img class="corner-image" src="chanel/chanel01.png" alt="Chanel">
+    </section>
+
+    <section class="screen" data-screen="9" data-song="Um amor puro" data-audio="musicas/um-amor-puro.mp3">
+      <article class="letter-card">
+        <p>Oi, vida.</p>
+        <p>Espero que a Chanel tenha te guiado por essa retrospectiva que preparei para você.</p>
+        <p>Agora são quase 4 horas da manhã, e eu estou chorando enquanto escrevo este texto.</p>
+        <p>Queria começar te pedindo desculpas por tudo o que aconteceu e por tudo o que vinha acontecendo. Eu, sinceramente, não consegui enxergar o que estava fazendo, nem o quanto algumas atitudes minhas estavam te machucando aos poucos.</p>
+        <p>Depois de tudo isso, conversei com Deus enquanto rezava um terço de 12 contas, e percebi que a vida é curta demais para eu não lutar pelo amor da minha vida: você, princesa.</p>
+        <p>Por isso estou aqui, virando a madrugada fazendo este site para você, tentando colocar em cada detalhe o quanto eu te amo e o quanto estou disposto a reconquistar a sua confiança, o seu carinho e o seu coração.</p>
+        <p>Eu sei que as feridas machucam. Sei que ardem. Sei que talvez existam coisas difíceis de esquecer. Mas eu acredito, de verdade, que quando existe amor, cuidado, esforço e Jesus no meio, ainda existe caminho.</p>
+        <p>Nesses últimos dias, percebi o quanto é ruim sentir a sua falta. Não passo um segundo sem pensar em você: se você está bem, se comeu direito, se o trabalho foi tranquilo, se alguém te fez sorrir hoje.</p>
+        <p>A verdade é que tudo perdeu um pouco da cor sem você.</p>
+        <p>As músicas ficaram diferentes.<br>Os dias ficaram mais silenciosos.<br>Até as pequenas coisas passaram a me lembrar você.</p>
+        <p>Eu sinto falta do seu jeito, das nossas conversas, das suas risadas, dos momentos bobos que só faziam sentido porque eram com você.</p>
+        <p>E foi aí que eu percebi uma coisa: amar você nunca foi um detalhe na minha vida. Você virou parte dela.</p>
+        <p>Isso me deixa pensativo, tira minha concentração no trabalho e me deixa ansioso, porque você faz muita falta na minha vida.</p>
+        <p>Queria te pedir mais uma chance para este amor. Para estes 57.974.400 segundos que foram tão especiais para mim e que ficaram marcados para sempre no meu coração.</p>
+        <p>Porque, mesmo depois de tudo, quando eu penso no meu futuro, ainda é a sua mão que eu imagino segurando a minha.</p>
+        <p>Você é tudo o que eu pedi a Deus.</p>
+        <p>Por favor, não vai embora.</p>
+      </article>
+    </section>
+
+    <section class="screen" data-screen="10" data-song="Yellow" data-audio="musicas/yellow.mp3">
+      <div class="photo-float-layer" id="photoFloatLayerFinal" aria-hidden="true"></div>
+    </section>
+
+    <nav class="controls" aria-label="Navegação da retrospectiva">
+      <button class="control-button" id="previousButton" type="button">Voltar</button>
+      <span class="counter" id="counter">1 / 10</span>
+      <button class="control-button" id="nextButton" type="button">Próxima</button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
