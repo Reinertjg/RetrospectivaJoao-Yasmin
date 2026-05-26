@@ -320,6 +320,7 @@ p {
 }
 
 .letter-card {
+  position: relative;
   width: min(90vw, 370px);
   max-height: 68vh;
   margin-top: 2vh;
@@ -350,6 +351,37 @@ p {
 
 .letter-card p:last-child {
   margin-bottom: 0;
+}
+
+.letter-scroll-hint {
+  position: sticky;
+  bottom: -18px;
+  width: fit-content;
+  margin: 12px auto -16px;
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: #ffffff;
+  background: rgba(122, 18, 52, 0.78);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  box-shadow: 0 10px 24px rgba(92, 9, 37, 0.28);
+  animation: scroll-hint-bounce 1.1s ease-in-out infinite;
+}
+
+.letter-scroll-hint.hidden {
+  display: none;
+}
+
+@keyframes scroll-hint-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
 }
 
 @keyframes letter-bob {

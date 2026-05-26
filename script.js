@@ -14,6 +14,8 @@ const section6Stats = document.querySelectorAll(".section6-stat");
 const section6Final = document.querySelector(".section6-final");
 const photoFloatLayer = document.querySelector("#photoFloatLayer");
 const photoFloatLayerFinal = document.querySelector("#photoFloatLayerFinal");
+const letterCard = document.querySelector(".letter-card");
+const letterScrollHint = document.querySelector("#letterScrollHint");
 
 let currentScreen = 0;
 let nextCooldown = 3;
@@ -173,6 +175,15 @@ function startNextCooldown() {
       clearInterval(nextCooldownTimer);
     }
   }, 1000);
+}
+
+function updateLetterScrollHint() {
+  if (!letterCard || !letterScrollHint) {
+    return;
+  }
+
+  const isAtBottom = letterCard.scrollTop + letterCard.clientHeight >= letterCard.scrollHeight - 24;
+  letterScrollHint.classList.toggle("hidden", isAtBottom);
 }
 
 function loadCurrentSong() {
@@ -445,6 +456,8 @@ nextButton.addEventListener("click", () => {
   showScreen(currentScreen + 1);
 });
 
+letterCard?.addEventListener("scroll", updateLetterScrollHint);
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
     showScreen(currentScreen - 1);
@@ -484,4 +497,5 @@ document.addEventListener("visibilitychange", () => {
 loadCurrentSong();
 playCurrentSong();
 createHearts();
+updateLetterScrollHint();
 startNextCooldown();
